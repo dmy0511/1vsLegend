@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ex05 : MonoBehaviour
 {
+    private com comScript;
+    private user userScript;
+
     private bool isInsideBox = false;
+
+    private void Start()
+    {
+        comScript = FindObjectOfType<com>();
+        userScript = FindObjectOfType<user>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,11 +40,25 @@ public class ex05 : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
+                Renderer renderer = GetComponent<Renderer>();
+
+                if (renderer.material.color == Color.red)
+                {
+                    comScript.Attack(10);
+                }
+
                 Destroy(gameObject);
             }
             else
             {
-                //Color.red;
+                Renderer renderer = GetComponent<Renderer>();
+
+                if (renderer.material.color == Color.blue)
+                {
+                    userScript.DefenseFail(10);
+                }
+
+                Destroy(gameObject);
             }
         }
     }

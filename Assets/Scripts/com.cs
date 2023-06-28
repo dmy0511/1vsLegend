@@ -7,17 +7,51 @@ public class com : MonoBehaviour
 {
     public Slider com_hp;
 
+    public Text scoretext;
+    private int currentscore;
+    private bool showQuestionMark = true;
+
     private float maxhp = 100;
     private float curhp = 100;
 
     void Start()
     {
         com_hp.value = (float)curhp / (float)maxhp;
+
+        currentscore = 0;
+        UpdateScoreText();
     }
 
     void Update()
     {
-        HandleHp();
+        if (curhp <= 0)
+        {
+            ResetHealth();
+            showQuestionMark = false;
+            currentscore++;
+            UpdateScoreText();
+        }
+        else
+        {
+            com_hp.value = curhp / maxhp;
+        }
+    }
+
+    private void ResetHealth()
+    {
+        curhp = maxhp;
+    }
+
+    void UpdateScoreText()
+    {
+        if (showQuestionMark)
+        {
+            scoretext.text = "1 대 ? 의 전설";
+        }
+        else
+        {
+            scoretext.text = "1 대 " + currentscore.ToString() + " 의 전설";
+        }
     }
 
     private void HandleHp()
@@ -25,8 +59,9 @@ public class com : MonoBehaviour
         com_hp.value = (float)curhp / (float)maxhp;
     }
 
-    public void nice()
+    public void Attack(float amount)
     {
-        curhp -= 10;
+        curhp -= amount;
+        curhp = Mathf.Clamp(curhp, 0, maxhp);
     }
 }

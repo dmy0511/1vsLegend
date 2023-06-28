@@ -25,8 +25,9 @@ public class user : MonoBehaviour
         user_hp.value = (float)curhp / (float)maxhp;
     }
 
-    public void miss()
+    public void DefenseFail(float amount)
     {
-        curhp -= 10;
+        curhp -= amount;
+        curhp = Mathf.Clamp(curhp, 0, maxhp);
     }
 }
