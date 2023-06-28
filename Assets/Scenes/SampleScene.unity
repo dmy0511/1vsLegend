@@ -1178,11 +1178,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToSpawn:
-  - {fileID: 6675600986599644534, guid: 3b92780714c6d084c898d98c393a0b33, type: 3}
-  - {fileID: 7019790691873691103, guid: dee3149b79035634e97afbdbf9b66d42, type: 3}
-  - {fileID: 7943466842939368042, guid: 6b89a289336735d49882d1c9092fb73b, type: 3}
-  - {fileID: 7559839227605127170, guid: 81c694a4292bc014bbd409b824fd6ac9, type: 3}
-  currentcooltime: 1
+  - prefab: {fileID: 7943466842939368042, guid: 6b89a289336735d49882d1c9092fb73b, type: 3}
+    initialSpeed: 3
+  - prefab: {fileID: 7559839227605127170, guid: 81c694a4292bc014bbd409b824fd6ac9, type: 3}
+    initialSpeed: 3
+  - prefab: {fileID: 7019790691873691103, guid: dee3149b79035634e97afbdbf9b66d42, type: 3}
+    initialSpeed: 3
+  - prefab: {fileID: 6675600986599644534, guid: 3b92780714c6d084c898d98c393a0b33, type: 3}
+    initialSpeed: 3
+  currentCoolTime: 1
+  speedIncreaseRate: 0.1
 --- !u!4 &1445695918
 Transform:
   m_ObjectHideFlags: 0
