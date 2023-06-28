@@ -35,7 +35,7 @@ public class ex05 : MonoBehaviour
             }
             else
             {
-                //Destroy(gameObject);
+                //Color.red;
             }
         }
     }
