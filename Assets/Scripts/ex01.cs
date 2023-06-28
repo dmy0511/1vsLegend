@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ex01 : MonoBehaviour
 {
-    public float speed = 5f;
+    private float currentSpeed = 3f;
+
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.right * currentSpeed;
     }
 }
 

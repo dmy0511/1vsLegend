@@ -33,18 +33,18 @@ public class ex05 : MonoBehaviour
 
     private void Update()
     {
+        Collider2D itemCollider = GetComponent<Collider2D>();
+        Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
+
         if (isInsideBox && Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Collider2D itemCollider = GetComponent<Collider2D>();
-            Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
-
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
 
                 if (renderer.material.color == Color.red)
                 {
-                    comScript.Attack(10);
+                    comScript.Attack(25);
                 }
 
                 Destroy(gameObject);
@@ -54,6 +54,39 @@ public class ex05 : MonoBehaviour
                 Renderer renderer = GetComponent<Renderer>();
 
                 if (renderer.material.color == Color.blue)
+                {
+                    userScript.DefenseFail(10);
+                }
+
+                Destroy(gameObject);
+            }
+        }
+        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
+            {
+                Renderer renderer = GetComponent<Renderer>();
+
+                if (renderer.material.color == Color.red)
+                {
+                    userScript.DefenseFail(10);
+                }
+                else if (renderer.material.color == Color.blue)
+                {
+                    userScript.DefenseFail(10);
+                }
+
+                Destroy(gameObject);
+            }
+            else
+            {
+                Renderer renderer = GetComponent<Renderer>();
+
+                if (renderer.material.color == Color.blue)
+                {
+                    userScript.DefenseFail(10);
+                }
+                else if (renderer.material.color == Color.red)
                 {
                     userScript.DefenseFail(10);
                 }

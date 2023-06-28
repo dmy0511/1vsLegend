@@ -5,12 +5,14 @@ using UnityEngine;
 public class spawner : MonoBehaviour
 {
     public GameObject[] objectsToSpawn;
-    public float cooltime = 3f;
+    public float currentcooltime = 0.5f;
 
+    private float cooltime;
     private float timer;
 
     void Start()
     {
+        cooltime = currentcooltime;
         timer = cooltime;
     }
 
@@ -32,6 +34,8 @@ public class spawner : MonoBehaviour
 
             timer = cooltime;
         }
+
+        cooltime = Mathf.Max(cooltime, 0f);
     }
 }
 

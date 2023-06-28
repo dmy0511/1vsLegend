@@ -54,11 +54,6 @@ public class com : MonoBehaviour
         }
     }
 
-    private void HandleHp()
-    {
-        com_hp.value = (float)curhp / (float)maxhp;
-    }
-
     public void Attack(float amount)
     {
         curhp -= amount;
