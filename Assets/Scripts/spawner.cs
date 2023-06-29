@@ -46,6 +46,13 @@ public class spawner : MonoBehaviour
             Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue;
             renderer.material.color = randomColor;
 
+            BoxCollider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<BoxCollider2D>();
+            if (boxCollider != null)
+            {
+                BoxCollisionHandler collisionHandler = spawnedObject.AddComponent<BoxCollisionHandler>();
+                collisionHandler.Initialize(boxCollider);
+            }
+
             timer = coolTime;
         }
 
@@ -57,4 +64,34 @@ public class spawner : MonoBehaviour
         }
     }
 }
+
+public class BoxCollisionHandler : MonoBehaviour
+{
+    private BoxCollider2D boxCollider;
+
+    public void Initialize(BoxCollider2D boxCollider)
+    {
+        this.boxCollider = boxCollider;
+    }
+
+    private void Update()
+    {
+        if (boxCollider != null)
+        {
+            Collider2D itemCollider = GetComponent<Collider2D>();
+
+            if (boxCollider.bounds.Contains(itemCollider.bounds.min))
+            {
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = Vector2.zero;
+                }
+            }
+        }
+    }
+}
+
+
+
 
