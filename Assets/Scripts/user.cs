@@ -6,9 +6,18 @@ using UnityEngine.UI;
 public class user : MonoBehaviour
 {
     public Slider user_hp;
+    private Animator animator;
 
     private float maxhp = 100;
     private float curhp = 100;
+
+    private com comScript;
+
+    private void Awake()
+    {
+        comScript = FindObjectOfType<com>();
+        animator = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -18,6 +27,29 @@ public class user : MonoBehaviour
     void Update()
     {
         HandleHp();
+
+        if (curhp <= 0)
+        {
+            string savedData = comScript.scoretext.text;
+
+            GameObject bestTextObject = GameObject.Find("BestText");
+            if (bestTextObject != null)
+            {
+                Text bestText = bestTextObject.GetComponent<Text>();
+                if (bestText != null)
+                {
+                    bestText.text = savedData;
+                }
+            }
+
+            comScript.ResetHealth();
+            comScript.showQuestionMark = false;
+            comScript.UpdateScoreText();
+        }
+        else
+        {
+            user_hp.value = curhp / maxhp;
+        }
     }
 
     private void HandleHp()

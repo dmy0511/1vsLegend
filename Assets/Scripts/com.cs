@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class com : MonoBehaviour
 {
     public Slider com_hp;
-
+    public Animator otherAnimator;
     public Text scoretext;
-    private int currentscore;
-    private bool showQuestionMark = true;
+    public int currentscore;
+    public bool showQuestionMark = true;
 
     private float maxhp = 100;
     private float curhp = 100;
+
+    private void Awake()
+    {
+    }
 
     void Start()
     {
@@ -37,12 +41,12 @@ public class com : MonoBehaviour
         }
     }
 
-    private void ResetHealth()
+    public void ResetHealth()
     {
         curhp = maxhp;
     }
 
-    void UpdateScoreText()
+    public void UpdateScoreText()
     {
         if (showQuestionMark)
         {
@@ -56,6 +60,7 @@ public class com : MonoBehaviour
 
     public void Attack(float amount)
     {
+        otherAnimator.SetTrigger("Attack");
         curhp -= amount;
         curhp = Mathf.Clamp(curhp, 0, maxhp);
     }
