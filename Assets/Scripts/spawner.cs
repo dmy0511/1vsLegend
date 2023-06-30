@@ -7,17 +7,19 @@ public class spawner : MonoBehaviour
     [System.Serializable]
     public class SpawnableObject
     {
-        public GameObject prefab; // »ı¼ºÇÒ ÇÁ¸®ÆÕ ¿ÀºêÁ§Æ®
-        public float initialSpeed; // ÃÊ±â ¼Óµµ
+        public GameObject prefab; // ìƒì„±í•  í”„ë¦¬íŒ¹ ì˜¤ë¸Œì íŠ¸
+        public float initialSpeed; // ì´ˆê¸° ì†ë„
     }
 
-    public SpawnableObject[] objectsToSpawn; // »ı¼ºÇÒ ¿ÀºêÁ§Æ® ¹è¿­
-    public float currentCoolTime = 0.5f; // ÇöÀç ÄğÅ¸ÀÓ
-    public float speedIncreaseRate = 0.1f; // ¼Óµµ Áõ°¡ ºñÀ²
-    public Transform boxTransform; // »óÀÚÀÇ Transform
+    public SpawnableObject[] objectsToSpawn; // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ ë°°ì—´
+    public float currentCoolTime = 0.5f; // í˜„ì¬ ì¿¨íƒ€ì„
+    public float speedIncreaseRate = 0.1f; // ì†ë„ ì¦ê°€ ë¹„ìœ¨
+    public Transform boxTransform; // ìƒìì˜ Transform
 
-    private float coolTime; // ÄğÅ¸ÀÓ
-    private float timer; // Å¸ÀÌ¸Ó
+    private float coolTime; // ì¿¨íƒ€ì„
+    private float timer; // íƒ€ì´ë¨¸
+    
+    //public bool canMove = true;
 
     private void Start()
     {
@@ -26,35 +28,37 @@ public class spawner : MonoBehaviour
     }
 
     private void Update()
-    {timer -= Time.deltaTime;
+    {
+        timer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
             int randomIndex = Random.Range(0, objectsToSpawn.Length);
             SpawnableObject randomObject = objectsToSpawn[randomIndex];
 
-            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // ·£´ıÇÑ ÇÁ¸®ÆÕ »ı¼º
+            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // ëœë¤í•œ í”„ë¦¬íŒ¹ ìƒì„±
 
             Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = Vector2.right * randomObject.initialSpeed; // ÃÊ±â ¼Óµµ·Î ÀÌµ¿
+                rb.velocity = Vector2.right * randomObject.initialSpeed; // ì´ˆê¸° ì†ë„ë¡œ ì´ë™
             }
+            //if (canMove){}
 
             Renderer renderer = spawnedObject.GetComponent<Renderer>();
 
-            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // ·£´ıÇÑ »ö»ó ¼±ÅÃ
-            renderer.material.color = randomColor; // ¼±ÅÃÇÑ »ö»óÀ¸·Î ¼³Á¤
+            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // ëœë¤í•œ ìƒ‰ìƒ ì„ íƒ
+            renderer.material.color = randomColor; // ì„ íƒí•œ ìƒ‰ìƒìœ¼ë¡œ ì„¤ì •
 
             BoxCollider2D boxCollider = boxTransform.GetComponent<BoxCollider2D>();
             timer = coolTime;
         }
 
-        coolTime = Mathf.Max(coolTime, 0f); // ÄğÅ¸ÀÓÀÌ 0 ÀÌÇÏ°¡ µÇÁö ¾Êµµ·Ï º¸Á¤
+        coolTime = Mathf.Max(coolTime, 0f); // ì¿¨íƒ€ì„ì´ 0 ì´í•˜ê°€ ë˜ì§€ ì•Šë„ë¡ ë³´ì •
 
         foreach (SpawnableObject obj in objectsToSpawn)
         {
-            obj.initialSpeed += speedIncreaseRate * Time.deltaTime; // ¼Óµµ Áõ°¡
+            obj.initialSpeed += speedIncreaseRate * Time.deltaTime; // ì†ë„ ì¦ê°€
         }
     }
 }

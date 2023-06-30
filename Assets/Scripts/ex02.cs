@@ -6,6 +6,7 @@ public class ex02 : MonoBehaviour
 {
     private com comScript;
     private user userScript;
+    private spawner moveScript;
 
     private bool isInsideBox = false;
 
@@ -21,6 +22,10 @@ public class ex02 : MonoBehaviour
         {
             isInsideBox = true;
         }
+        //else if (collision.CompareTag("Center"))
+        //{
+        //    moveScript.canMove = false;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)

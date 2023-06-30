@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - SpawnedObject
+  - Center
   layers:
   - Default
   - TransparentFX
