@@ -8,6 +8,9 @@ public class ex03 : MonoBehaviour
     private user userScript;
 
     private bool isInsideBox = false;
+    private bool BoxCenter = false;
+    
+    private float moveSpeed = 5f;
 
     private void Start()
     {
@@ -21,6 +24,10 @@ public class ex03 : MonoBehaviour
         {
             isInsideBox = true;
         }
+        else if (collision.CompareTag("Center"))
+        {
+            BoxCenter = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -29,12 +36,28 @@ public class ex03 : MonoBehaviour
         {
             isInsideBox = false;
         }
+        else if (collision.CompareTag("Center"))
+        {
+            BoxCenter = false;
+        }
     }
 
     private void Update()
     {
         Collider2D itemCollider = GetComponent<Collider2D>();
         Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
+        
+        if (BoxCenter)
+        {
+            // Object is inside the box, stop moving
+            // Add any additional code you need for when the object is inside the box
+        }
+        else
+        {
+            // Object is not inside the box, move from left to right at a constant speed
+            Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
+            transform.position = newPosition;
+        }
 
         if (isInsideBox && Input.GetKeyDown(KeyCode.RightArrow))
         {

@@ -20,12 +20,12 @@ public class InputFieldExercise : MonoBehaviour
 
     public void OnValueChangedEvent(string str)
     {
-        text.text = $"´Ð³×ÀÓ(¼³Á¤Áß) : {str}";
+        text.text = $"ë‹‰ë„¤ìž„(ì„¤ì •ì¤‘) : {str}";
     }
 
     public void OnEndEditEvent(string str)
     {
-        text.text = $"´Ð³×ÀÓ(¼³Á¤¿Ï·á) : {str}";
+        text.text = $"ë‹‰ë„¤ìž„(ì„¤ì •ì™„ë£Œ) : {str}";
     }
 
     public void OnSubmit(string str)

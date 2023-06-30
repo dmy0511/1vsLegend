@@ -8,18 +8,13 @@ public class spawner : MonoBehaviour
     public class SpawnableObject
     {
         public GameObject prefab; // 생성할 프리팹 오브젝트
-        public float initialSpeed; // 초기 속도
     }
 
     public SpawnableObject[] objectsToSpawn; // 생성할 오브젝트 배열
-    public float currentCoolTime = 0.5f; // 현재 쿨타임
-    public float speedIncreaseRate = 0.1f; // 속도 증가 비율
-    public Transform boxTransform; // 상자의 Transform
+    public float currentCoolTime = 1f; // 현재 쿨타임
 
     private float coolTime; // 쿨타임
     private float timer; // 타이머
-    
-    //public bool canMove = true;
 
     private void Start()
     {
@@ -29,36 +24,25 @@ public class spawner : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
         {
             int randomIndex = Random.Range(0, objectsToSpawn.Length);
             SpawnableObject randomObject = objectsToSpawn[randomIndex];
 
-            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // 랜덤한 프리팹 생성
-
-            Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.velocity = Vector2.right * randomObject.initialSpeed; // 초기 속도로 이동
-            }
-            //if (canMove){}
-
+            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // 랜덤 프리팹 생성
+            
             Renderer renderer = spawnedObject.GetComponent<Renderer>();
 
-            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // 랜덤한 색상 선택
-            renderer.material.color = randomColor; // 선택한 색상으로 설정
+            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // pick a random color
+            renderer.material.color = randomColor;
 
-            BoxCollider2D boxCollider = boxTransform.GetComponent<BoxCollider2D>();
+            // 생성된 오브젝트에 대한 속성을 수정하거나 설정할 수 있습니다.
+
             timer = coolTime;
-        }
-
-        coolTime = Mathf.Max(coolTime, 0f); // 쿨타임이 0 이하가 되지 않도록 보정
-
-        foreach (SpawnableObject obj in objectsToSpawn)
-        {
-            obj.initialSpeed += speedIncreaseRate * Time.deltaTime; // 속도 증가
         }
     }
 }

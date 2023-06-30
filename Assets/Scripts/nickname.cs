@@ -13,11 +13,11 @@ public class nickname : MonoBehaviour
         if (PlayerPrefs.HasKey("Nickname"))
         {
             string nickname = PlayerPrefs.GetString("Nickname");
-            nicknameText.text = $"닉네임 : {nickname}";
+            nicknameText.text = nickname;
         }
         else
         {
-            nicknameText.text = "닉네임 : ???";
+            nicknameText.text = "???";
         }
     }
 }
