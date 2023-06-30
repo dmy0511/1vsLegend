@@ -26,7 +26,12 @@ public class spawner : MonoBehaviour
     {
         if (timer > 0f)
         {
-            timer -= Time.deltaTime;
+            if(GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool==false){
+
+            }else{
+                 timer -= Time.deltaTime;
+            }
+           
         }
         else
         {

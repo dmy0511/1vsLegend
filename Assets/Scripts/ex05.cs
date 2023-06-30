@@ -11,13 +11,17 @@ public class ex05 : MonoBehaviour
     private bool BoxCenter = false;
     
     private float moveSpeed = 5f;
-
+     private float wait_time = 3f;
+      private float minus_time = 0f;
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
     }
-
+  private void waiting()
+    {
+       GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
@@ -26,7 +30,8 @@ public class ex05 : MonoBehaviour
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = true;
+          GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=false;
+            Invoke("waiting",wait_time-minus_time);
         }
     }
 
@@ -47,7 +52,7 @@ public class ex05 : MonoBehaviour
         Collider2D itemCollider = GetComponent<Collider2D>();
         Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
         
-        if (BoxCenter)
+        if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool==false)
         {
             // Object is inside the box, stop moving
             // Add any additional code you need for when the object is inside the box
