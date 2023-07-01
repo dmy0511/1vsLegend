@@ -6,6 +6,7 @@ public class ex03 : MonoBehaviour
 {
     private com comScript;
     private user userScript;
+    private TimerBar timerScript;
 
     private bool isInsideBox = false;
     private bool BoxCenter = false;
@@ -17,6 +18,7 @@ public class ex03 : MonoBehaviour
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
+        timerScript = FindObjectOfType<TimerBar>();
     }
     private void waiting()
     {
@@ -55,12 +57,10 @@ public class ex03 : MonoBehaviour
 
         if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // Object is inside the box, stop moving
-            // Add any additional code you need for when the object is inside the box
+
         }
         else
         {
-            // Object is not inside the box, move from left to right at a constant speed
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
@@ -77,17 +77,7 @@ public class ex03 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
-            }
-            else
-            {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
-
-                Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
         else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
@@ -106,21 +96,7 @@ public class ex03 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
-            }
-            else
-            {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
-                else if (renderer.material.color == Color.red)
-                {
-                    userScript.DefenseFail(10);
-                }
-
-                Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
     }

@@ -28,7 +28,7 @@ public class spawner : MonoBehaviour
         {
             if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
             {
-
+                // 키 이동 여부가 false인 경우 아무 작업도 수행하지 않음
             }
             else
             {
@@ -41,14 +41,14 @@ public class spawner : MonoBehaviour
             int randomIndex = Random.Range(0, objectsToSpawn.Length);
             SpawnableObject randomObject = objectsToSpawn[randomIndex];
 
-            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // 랜덤 프리팹 생성
+            GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // 랜덤한 프리팹 생성
 
             Renderer renderer = spawnedObject.GetComponent<Renderer>();
 
-            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // pick a random color
+            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // 랜덤한 색상 선택
             renderer.material.color = randomColor;
 
-            // 생성된 오브젝트에 대한 속성을 수정하거나 설정할 수 있습니다.
+            // 생성된 오브젝트의 속성을 수정하거나 설정할 수 있음
 
             timer = coolTime;
         }

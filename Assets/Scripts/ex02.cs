@@ -6,38 +6,39 @@ public class ex02 : MonoBehaviour
 {
     private com comScript;
     private user userScript;
+    private TimerBar timerScript;
 
-    private bool isInsideBox = false;
-    private bool BoxCenter = false;
+    private bool isInsideBox = false; // 상자 안에 있는지 여부
+    private bool BoxCenter = false; // 상자 중앙에 있는지 여부
 
-    private float moveSpeed = 5f;
-    private float wait_time = 3f;
-    private float minus_time = 0f;
-
+    private float moveSpeed = 5f; // 이동 속도
+    private float wait_time = 3f; // 대기 시간
+    private float minus_time = 0f; // 시간 감소
 
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
+        timerScript = FindObjectOfType<TimerBar>();
     }
 
     private void waiting()
     {
+        // 키 이동 여부를 true로 설정하여 대기 종료
         GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = true;
+            isInsideBox = true; // 상자 안에 들어감
         }
         else if (collision.CompareTag("Center"))
         {
+            // 키 이동 여부를 false로 설정하여 대기 시작
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
-            Invoke("waiting", wait_time - minus_time);
+            Invoke("waiting", wait_time - minus_time); // 지정된 대기 시간 이후에 waiting 함수 호출
         }
     }
 
@@ -45,11 +46,11 @@ public class ex02 : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = false;
+            isInsideBox = false; // 상자에서 나옴
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = false;
+            BoxCenter = false; // 중앙에서 나옴
         }
     }
 
@@ -60,12 +61,12 @@ public class ex02 : MonoBehaviour
 
         if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // Object is inside the box, stop moving
-            // Add any additional code you need for when the object is inside the box
+            // 오브젝트가 상자 안에 있으므로 이동을 멈춤
+            // 오브젝트가 상자 안에 있을 때 추가적인 코드를 넣을 수 있음
         }
         else
         {
-            // Object is not inside the box, move from left to right at a constant speed
+            // 오브젝트가 상자 안에 없으므로 왼쪽에서 오른쪽으로 일정한 속도로 이동
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
@@ -82,6 +83,7 @@ public class ex02 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
         else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
@@ -100,6 +102,7 @@ public class ex02 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
     }
