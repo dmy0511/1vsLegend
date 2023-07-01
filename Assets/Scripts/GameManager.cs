@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool key_move_bool=true;
-    // Start is called before the first frame update
+    public bool key_move_bool = true;
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

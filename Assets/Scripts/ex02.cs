@@ -6,38 +6,39 @@ public class ex02 : MonoBehaviour
 {
     private com comScript;
     private user userScript;
+    private TimerBar timerScript;
 
-    private bool isInsideBox = false;
-    private bool BoxCenter = false;
-    
-    private float moveSpeed = 5f;
-     private float wait_time = 3f;
-      private float minus_time = 0f;
-     
+    private bool isInsideBox = false; // ���� �ȿ� �ִ��� ����
+    private bool BoxCenter = false; // ���� �߾ӿ� �ִ��� ����
+
+    private float moveSpeed = 5f; // �̵� �ӵ�
+    private float wait_time = 3f; // ��� �ð�
+    private float minus_time = 0f; // �ð� ����
 
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
+        timerScript = FindObjectOfType<TimerBar>();
     }
 
     private void waiting()
     {
-       GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=true;
+        // Ű �̵� ���θ� true�� �����Ͽ� ��� ����
+        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
-
-        
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = true;
+            isInsideBox = true; // ���� �ȿ� ��
         }
         else if (collision.CompareTag("Center"))
         {
-             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=false;
-            Invoke("waiting",wait_time-minus_time);
+            // Ű �̵� ���θ� false�� �����Ͽ� ��� ����
+            GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
+            Invoke("waiting", wait_time - minus_time); // ������ ��� �ð� ���Ŀ� waiting �Լ� ȣ��
         }
     }
 
@@ -45,11 +46,11 @@ public class ex02 : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = false;
+            isInsideBox = false; // ���ڿ��� ����
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = false;
+            BoxCenter = false; // �߾ӿ��� ����
         }
     }
 
@@ -57,21 +58,22 @@ public class ex02 : MonoBehaviour
     {
         Collider2D itemCollider = GetComponent<Collider2D>();
         Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
-        
-        if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool==false)
+
+        if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // Object is inside the box, stop moving
-            // Add any additional code you need for when the object is inside the box
+            // ������Ʈ�� ���� �ȿ� �����Ƿ� �̵��� ����
+            // ������Ʈ�� ���� �ȿ� ���� �� �߰����� �ڵ带 ���� �� ����
         }
         else
         {
-            // Object is not inside the box, move from left to right at a constant speed
+            // ������Ʈ�� ���� �ȿ� �����Ƿ� ���ʿ��� ���������� ������ �ӵ��� �̵�
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
 
         if (isInsideBox && Input.GetKeyDown(KeyCode.UpArrow))
         {
+                     GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
@@ -81,11 +83,17 @@ public class ex02 : MonoBehaviour
                     comScript.Attack(25);
                 }
 
+              
+
                 Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
         else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
+
+                           GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
+             
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
@@ -99,7 +107,10 @@ public class ex02 : MonoBehaviour
                     userScript.DefenseFail(10);
                 }
 
+           
+
                 Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
     }

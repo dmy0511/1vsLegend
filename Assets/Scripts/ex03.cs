@@ -6,21 +6,23 @@ public class ex03 : MonoBehaviour
 {
     private com comScript;
     private user userScript;
+    private TimerBar timerScript;
 
     private bool isInsideBox = false;
     private bool BoxCenter = false;
-    
+
     private float moveSpeed = 5f;
-     private float wait_time = 3f;
-      private float minus_time = 0f;
+    private float wait_time = 3f;
+    private float minus_time = 0f;
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
+        timerScript = FindObjectOfType<TimerBar>();
     }
-      private void waiting()
+    private void waiting()
     {
-       GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=true;
+        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,8 +33,8 @@ public class ex03 : MonoBehaviour
         }
         else if (collision.CompareTag("Center"))
         {
-            GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool=false;
-            Invoke("waiting",wait_time-minus_time);
+            GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
+            Invoke("waiting", wait_time - minus_time);
         }
     }
 
@@ -52,21 +54,20 @@ public class ex03 : MonoBehaviour
     {
         Collider2D itemCollider = GetComponent<Collider2D>();
         Collider2D boxCollider = GameObject.FindGameObjectWithTag("Box").GetComponent<Collider2D>();
-        
-        if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool==false)
+
+        if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // Object is inside the box, stop moving
-            // Add any additional code you need for when the object is inside the box
+
         }
         else
         {
-            // Object is not inside the box, move from left to right at a constant speed
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
 
         if (isInsideBox && Input.GetKeyDown(KeyCode.RightArrow))
         {
+             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
@@ -77,21 +78,12 @@ public class ex03 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
-            }
-            else
-            {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
-
-                Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
         else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
+             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
@@ -106,21 +98,7 @@ public class ex03 : MonoBehaviour
                 }
 
                 Destroy(gameObject);
-            }
-            else
-            {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
-                else if (renderer.material.color == Color.red)
-                {
-                    userScript.DefenseFail(10);
-                }
-
-                Destroy(gameObject);
+                timerScript.OnDestroy();
             }
         }
     }
