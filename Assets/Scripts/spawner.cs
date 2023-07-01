@@ -26,7 +26,15 @@ public class spawner : MonoBehaviour
     {
         if (timer > 0f)
         {
-            timer -= Time.deltaTime;
+            if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
+            {
+
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+
         }
         else
         {
@@ -34,7 +42,7 @@ public class spawner : MonoBehaviour
             SpawnableObject randomObject = objectsToSpawn[randomIndex];
 
             GameObject spawnedObject = Instantiate(randomObject.prefab, transform.position, Quaternion.identity); // 랜덤 프리팹 생성
-            
+
             Renderer renderer = spawnedObject.GetComponent<Renderer>();
 
             Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // pick a random color

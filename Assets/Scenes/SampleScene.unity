@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 296567133}
   - component: {fileID: 296567132}
   - component: {fileID: 296567131}
+  - component: {fileID: 296567135}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -302,6 +303,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &296567135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296567130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d462545eafd1740975ff47e926dd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key_move_bool: 1
 --- !u!1 &402326252
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +423,6 @@ GameObject:
   - component: {fileID: 447160155}
   - component: {fileID: 447160154}
   - component: {fileID: 447160156}
-  - component: {fileID: 447160157}
   m_Layer: 0
   m_Name: Center
   m_TagString: Center
@@ -531,18 +544,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &447160157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447160152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69433750bcdf264a92753f24bccbd5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &463805232
 GameObject:
   m_ObjectHideFlags: 0
