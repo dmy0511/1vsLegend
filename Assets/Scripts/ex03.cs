@@ -67,6 +67,8 @@ public class ex03 : MonoBehaviour
 
         if (isInsideBox && Input.GetKeyDown(KeyCode.RightArrow))
         {
+            GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
+
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
@@ -82,6 +84,8 @@ public class ex03 : MonoBehaviour
         }
         else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
+            GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
+
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
                 Renderer renderer = GetComponent<Renderer>();
