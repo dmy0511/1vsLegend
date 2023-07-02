@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ex03 : MonoBehaviour
+public class Right : MonoBehaviour
 {
     private com comScript;
     private user userScript;
@@ -14,15 +14,18 @@ public class ex03 : MonoBehaviour
     private float moveSpeed = 5f;
     private float wait_time = 3f;
     private float minus_time = 0f;
+
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
     }
+    
     private void waiting()
     {
         GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

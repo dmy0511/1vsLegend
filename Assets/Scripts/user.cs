@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class user : MonoBehaviour
 {
     public Slider user_hp; // 사용자의 체력을 표시하는 슬라이더
-    //public GameObject GameOver; // GameOver를 표시하는 게임 오브젝트
     private Animator animator; // 애니메이터
 
     private float maxhp = 100; // 최대 체력
@@ -48,8 +47,6 @@ public class user : MonoBehaviour
             comScript.UpdateScoreText(); // com 스크립트의 점수 텍스트 업데이트
 
             Time.timeScale = 0;
-
-            //GameOver.SetActive(true);
         }
         else
         {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class com : MonoBehaviour
 {
     public Slider com_hp; // 컴퓨터의 체력을 표시하는 슬라이더
-    public Animator otherAnimator; // 다른 애니메이터
+    public Animator otherAnimator; // 애니메이터
     public Text scoretext; // 점수를 표시하는 텍스트
     public int currentscore; // 현재 점수
     public bool showQuestionMark = true; // 물음표 표시 여부
@@ -34,6 +34,11 @@ public class com : MonoBehaviour
             showQuestionMark = false; // 물음표 표시를 비활성화
             currentscore++; // 점수 증가
             UpdateScoreText(); // 점수 텍스트 업데이트
+
+            if (currentscore % 5 == 0)  // 현재 점수가 5의 배수일 때
+            {
+                
+            }
         }
         else
         {

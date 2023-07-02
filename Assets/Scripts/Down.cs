@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ex05 : MonoBehaviour
+public class Down : MonoBehaviour
 {
     private com comScript;
     private user userScript;
@@ -14,17 +14,20 @@ public class ex05 : MonoBehaviour
     private float moveSpeed = 5f;
     private float wait_time = 3f;
     private float minus_time = 0f;
+
     private void Start()
     {
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
-        
     }
+    
     private void waiting()
     {
         GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
+        Destroy(gameObject);
     }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
@@ -65,7 +68,7 @@ public class ex05 : MonoBehaviour
             transform.position = newPosition;
         }
 
-        if (isInsideBox && Input.GetKeyDown(KeyCode.LeftArrow))
+        if (isInsideBox && Input.GetKeyDown(KeyCode.DownArrow))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
@@ -82,7 +85,7 @@ public class ex05 : MonoBehaviour
                 timerScript.OnDestroy();
             }
         }
-        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        else if (isInsideBox && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
