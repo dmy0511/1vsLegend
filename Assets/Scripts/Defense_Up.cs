@@ -24,9 +24,10 @@ public class Defense_Up : MonoBehaviour
 
     private void waiting()
     {
-        // 키 이동 여부를 true로 설정하여 대기 종료
-        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
         Destroy(gameObject);
+        userScript.DefenseFail(10);
+
+        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

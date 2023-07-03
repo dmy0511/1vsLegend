@@ -37,7 +37,7 @@ public class com : MonoBehaviour
 
             if (currentscore % 5 == 0)  // 현재 점수가 5의 배수일 때
             {
-                
+                // 능력치 향상 기능 추가
             }
         }
         else

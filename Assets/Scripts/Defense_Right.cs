@@ -24,8 +24,10 @@ public class Defense_Right : MonoBehaviour
 
     private void waiting()
     {
-        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
         Destroy(gameObject);
+        userScript.DefenseFail(10);
+
+        GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
