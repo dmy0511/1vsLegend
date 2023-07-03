@@ -6,18 +6,18 @@ using UnityEngine.UI;
 public class nickname : MonoBehaviour
 {
     [SerializeField]
-    private Text nicknameText; // ´Ğ³×ÀÓÀ» Ç¥½ÃÇÏ´Â ÅØ½ºÆ®
+    private Text nicknameText; // ë‹‰ë„¤ì„ì„ í‘œì‹œí•˜ëŠ” í…ìŠ¤íŠ¸
 
     private void Start()
     {
         if (PlayerPrefs.HasKey("Nickname"))
         {
-            string nickname = PlayerPrefs.GetString("Nickname"); // ÀúÀåµÈ ´Ğ³×ÀÓ °¡Á®¿À±â
-            nicknameText.text = nickname; // ´Ğ³×ÀÓÀ» ÅØ½ºÆ®¿¡ ¹İ¿µ
+            string nickname = PlayerPrefs.GetString("Nickname"); // ì €ì¥ëœ ë‹‰ë„¤ì„ ê°€ì ¸ì˜¤ê¸°
+            nicknameText.text = nickname; // ë‹‰ë„¤ì„ì„ í…ìŠ¤íŠ¸ì— ë°˜ì˜
         }
         else
         {
-            nicknameText.text = "???"; // ÀúÀåµÈ ´Ğ³×ÀÓÀÌ ¾ø´Â °æ¿ì "???"À¸·Î Ç¥½Ã
+            nicknameText.text = "???"; // ì €ì¥ëœ ë‹‰ë„¤ì„ì´ ì—†ëŠ” ê²½ìš° "???"ìœ¼ë¡œ í‘œì‹œ
         }
     }
 }

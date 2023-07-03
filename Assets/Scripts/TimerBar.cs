@@ -7,14 +7,14 @@ public class TimerBar : MonoBehaviour
 {
     public Slider timerbar;
 
-    private float currentTime = 3f; // ³²Àº ½Ã°£
-    private bool isTimerActive;     // Å¸ÀÌ¸Ó°¡ È°¼ºÈ­µÇ¾î ÀÖ´ÂÁö ¿©ºÎ¸¦ È®ÀÎ
-    private bool isInCenter; // ¹æÇâÅ°°¡ Center ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ¸¦ È®ÀÎ
+    private float currentTime = 3f; // ë‚¨ì€ ì‹œê°„
+    private bool isTimerActive;     // íƒ€ì´ë¨¸ê°€ í™œì„±í™”ë˜ì–´ ìˆëŠ”ì§€ ì—¬ë¶€ë¥¼ í™•ì¸
+    private bool isInCenter; // ë°©í–¥í‚¤ê°€ Center ì•ˆì— ìˆëŠ”ì§€ ì—¬ë¶€ë¥¼ í™•ì¸
 
     private void Start()
     {
         timerbar = GetComponentInChildren<Slider>();
-        timerbar.gameObject.SetActive(false); // Å¸ÀÌ¸Ó ¹Ù¸¦ ºñÈ°¼ºÈ­
+        timerbar.gameObject.SetActive(false); // íƒ€ì´ë¨¸ ë°”ë¥¼ ë¹„í™œì„±í™”
 
         isTimerActive = false;
         isInCenter = false;
@@ -26,13 +26,13 @@ public class TimerBar : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
 
-            // Å¸ÀÌ¸Ó ¹Ù¸¦ ¾÷µ¥ÀÌÆ®
-            float fillAmount = currentTime / 3f; // 3ÃÊ·Î ³ª´©¾î¼­ ¹ÙÀÇ Ã¤¿öÁø Á¤µµ °è»ê
+            // íƒ€ì´ë¨¸ ë°”ë¥¼ ì—…ë°ì´íŠ¸
+            float fillAmount = currentTime / 3f; // 3ì´ˆë¡œ ë‚˜ëˆ„ì–´ì„œ ë°”ì˜ ì±„ì›Œì§„ ì •ë„ ê³„ì‚°
             timerbar.value = fillAmount;
 
             if (currentTime <= 0 || !isInCenter)
             {
-                // Å¸ÀÌ¸Ó°¡ ¿Ï·áµÇ¾ú°Å³ª ¹æÇâÅ°°¡ Center¸¦ ¹ş¾î³µÀ»¶§
+                // íƒ€ì´ë¨¸ê°€ ì™„ë£Œë˜ì—ˆê±°ë‚˜ ë°©í–¥í‚¤ê°€ Centerë¥¼ ë²—ì–´ë‚¬ì„ë•Œ
                 ResetTimer();
             }
         }
@@ -42,10 +42,10 @@ public class TimerBar : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            // ¹æÇâÅ°°¡ Center ¾È¿¡ ÁøÀÔÇßÀ» ¶§
+            // ë°©í–¥í‚¤ê°€ Center ì•ˆì— ì§„ì…í–ˆì„ ë•Œ
             isInCenter = true;
 
-            // ÇÃ·¹ÀÌ¾î°¡ ¼¾ÅÍ ¹Ú½º¿¡ ÁøÀÔÇÏ¸é Å¸ÀÌ¸Ó È°¼ºÈ­ ¹× Å¸ÀÌ¸Ó ¹Ù È°¼ºÈ­
+            // í”Œë ˆì´ì–´ê°€ ì„¼í„° ë°•ìŠ¤ì— ì§„ì…í•˜ë©´ íƒ€ì´ë¨¸ í™œì„±í™” ë° íƒ€ì´ë¨¸ ë°” í™œì„±í™”
             isTimerActive = true;
             timerbar.gameObject.SetActive(true);
         }
@@ -55,10 +55,10 @@ public class TimerBar : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            // ¹æÇâÅ°°¡ Center¸¦ ¹ş¾î³µÀ» ¶§
+            // ë°©í–¥í‚¤ê°€ Centerë¥¼ ë²—ì–´ë‚¬ì„ ë•Œ
             isInCenter = false;
 
-            // ÇÃ·¹ÀÌ¾î°¡ ¼¾ÅÍ ¹Ú½º¸¦ ¹ş¾î³ª¸é Å¸ÀÌ¸Ó ºñÈ°¼ºÈ­
+            // í”Œë ˆì´ì–´ê°€ ì„¼í„° ë°•ìŠ¤ë¥¼ ë²—ì–´ë‚˜ë©´ íƒ€ì´ë¨¸ ë¹„í™œì„±í™”
             isTimerActive = false;
 
             ResetTimer();
@@ -67,8 +67,8 @@ public class TimerBar : MonoBehaviour
 
     private void ResetTimer()
     {
-        isTimerActive = false;  // Å¸ÀÌ¸Ó°¡ ºñÈ°¼ºÈ­ µÇ¸é
-        currentTime = 3f; // Å¸ÀÌ¸Ó¸¦ ÃÊ±â°ªÀ¸·Î Àç¼³Á¤
+        isTimerActive = false;  // íƒ€ì´ë¨¸ê°€ ë¹„í™œì„±í™” ë˜ë©´
+        currentTime = 3f; // íƒ€ì´ë¨¸ë¥¼ ì´ˆê¸°ê°’ìœ¼ë¡œ ì¬ì„¤ì •
     }
 
     public void OnDestroy()

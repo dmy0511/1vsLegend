@@ -5,63 +5,63 @@ using UnityEngine.UI;
 
 public class user : MonoBehaviour
 {
-    public Slider user_hp; // »ç¿ëÀÚÀÇ Ã¼·ÂÀ» Ç¥½ÃÇÏ´Â ½½¶óÀÌ´õ
-    private Animator animator; // ¾Ö´Ï¸ŞÀÌÅÍ
+    public Slider user_hp; // ì‚¬ìš©ìì˜ ì²´ë ¥ì„ í‘œì‹œí•˜ëŠ” ìŠ¬ë¼ì´ë”
+    private Animator animator; // ì• ë‹ˆë©”ì´í„°
 
-    private float maxhp = 100; // ÃÖ´ë Ã¼·Â
-    private float curhp = 100; // ÇöÀç Ã¼·Â
+    private float maxhp = 100; // ìµœëŒ€ ì²´ë ¥
+    private float curhp = 100; // í˜„ì¬ ì²´ë ¥
 
-    private com comScript; // com ½ºÅ©¸³Æ®
+    private com comScript; // com ìŠ¤í¬ë¦½íŠ¸
 
     private void Awake()
     {
-        comScript = FindObjectOfType<com>(); // com ½ºÅ©¸³Æ® °¡Á®¿À±â
-        animator = GetComponent<Animator>(); // ¾Ö´Ï¸ŞÀÌÅÍ ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        comScript = FindObjectOfType<com>(); // com ìŠ¤í¬ë¦½íŠ¸ ê°€ì ¸ì˜¤ê¸°
+        animator = GetComponent<Animator>(); // ì• ë‹ˆë©”ì´í„° ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
     }
 
     void Start()
     {
-        user_hp.value = (float)curhp / (float)maxhp; // ÇöÀç Ã¼·ÂÀ» ½½¶óÀÌ´õ¿¡ ¹İ¿µ
+        user_hp.value = (float)curhp / (float)maxhp; // í˜„ì¬ ì²´ë ¥ì„ ìŠ¬ë¼ì´ë”ì— ë°˜ì˜
     }
 
     void Update()
     {
-        HandleHp(); // Ã¼·Â ¾÷µ¥ÀÌÆ®
+        HandleHp(); // ì²´ë ¥ ì—…ë°ì´íŠ¸
 
         if (curhp <= 0)
         {
-            string savedData = comScript.scoretext.text; // com ½ºÅ©¸³Æ®¿¡¼­ ÅØ½ºÆ® °¡Á®¿À±â
+            string savedData = comScript.scoretext.text; // com ìŠ¤í¬ë¦½íŠ¸ì—ì„œ í…ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸°
 
-            GameObject bestTextObject = GameObject.Find("BestText"); // "BestText" ¿ÀºêÁ§Æ® Ã£±â
+            GameObject bestTextObject = GameObject.Find("BestText"); // "BestText" ì˜¤ë¸Œì íŠ¸ ì°¾ê¸°
             if (bestTextObject != null)
             {
-                Text bestText = bestTextObject.GetComponent<Text>(); // "BestText" ¿ÀºêÁ§Æ®¿¡¼­ Text ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+                Text bestText = bestTextObject.GetComponent<Text>(); // "BestText" ì˜¤ë¸Œì íŠ¸ì—ì„œ Text ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
                 if (bestText != null)
                 {
-                    bestText.text = savedData; // "BestText" ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+                    bestText.text = savedData; // "BestText" í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
                 }
             }
 
-            comScript.ResetHealth(); // com ½ºÅ©¸³Æ®ÀÇ Ã¼·Â ÃÊ±âÈ­
-            comScript.showQuestionMark = false; // com ½ºÅ©¸³Æ®¿¡¼­ ¹°À½Ç¥ Ç¥½Ã¸¦ ºñÈ°¼ºÈ­
-            comScript.UpdateScoreText(); // com ½ºÅ©¸³Æ®ÀÇ Á¡¼ö ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+            comScript.ResetHealth(); // com ìŠ¤í¬ë¦½íŠ¸ì˜ ì²´ë ¥ ì´ˆê¸°í™”
+            comScript.showQuestionMark = false; // com ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ë¬¼ìŒí‘œ í‘œì‹œë¥¼ ë¹„í™œì„±í™”
+            comScript.UpdateScoreText(); // com ìŠ¤í¬ë¦½íŠ¸ì˜ ì ìˆ˜ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
 
             Time.timeScale = 0;
         }
         else
         {
-            user_hp.value = curhp / maxhp; // ÇöÀç Ã¼·ÂÀ» ½½¶óÀÌ´õ¿¡ ¹İ¿µ
+            user_hp.value = curhp / maxhp; // í˜„ì¬ ì²´ë ¥ì„ ìŠ¬ë¼ì´ë”ì— ë°˜ì˜
         }
     }
 
     private void HandleHp()
     {
-        user_hp.value = (float)curhp / (float)maxhp; // ÇöÀç Ã¼·ÂÀ» ½½¶óÀÌ´õ¿¡ ¹İ¿µ
+        user_hp.value = (float)curhp / (float)maxhp; // í˜„ì¬ ì²´ë ¥ì„ ìŠ¬ë¼ì´ë”ì— ë°˜ì˜
     }
 
     public void DefenseFail(float amount)
     {
-        curhp -= amount; // ÇöÀç Ã¼·Â °¨¼Ò
-        curhp = Mathf.Clamp(curhp, 0, maxhp); // ÇöÀç Ã¼·ÂÀÌ ÃÖ´ë Ã¼·ÂÀ» ³ÑÁö ¾Êµµ·Ï Á¦ÇÑ
+        curhp -= amount; // í˜„ì¬ ì²´ë ¥ ê°ì†Œ
+        curhp = Mathf.Clamp(curhp, 0, maxhp); // í˜„ì¬ ì²´ë ¥ì´ ìµœëŒ€ ì²´ë ¥ì„ ë„˜ì§€ ì•Šë„ë¡ ì œí•œ
     }
 }

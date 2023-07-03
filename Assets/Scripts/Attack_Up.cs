@@ -8,12 +8,12 @@ public class Attack_Up : MonoBehaviour
     private user userScript;
     private TimerBar timerScript;
 
-    private bool isInsideBox = false; // »óÀÚ ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ
-    private bool BoxCenter = false; // »óÀÚ Áß¾Ó¿¡ ÀÖ´ÂÁö ¿©ºÎ
+    private bool isInsideBox = false; // ìƒì ì•ˆì— ìˆëŠ”ì§€ ì—¬ë¶€
+    private bool BoxCenter = false; // ìƒì ì¤‘ì•™ì— ìˆëŠ”ì§€ ì—¬ë¶€
 
-    private float moveSpeed = 5f; // ÀÌµ¿ ¼Óµµ
-    private float wait_time = 3f; // ´ë±â ½Ã°£
-    private float minus_time = 0f; // ½Ã°£ °¨¼Ò
+    private float moveSpeed = 5f; // ì´ë™ ì†ë„
+    private float wait_time = 3f; // ëŒ€ê¸° ì‹œê°„
+    private float minus_time = 0f; // ì‹œê°„ ê°ì†Œ
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Attack_Up : MonoBehaviour
         Destroy(gameObject);
         userScript.DefenseFail(10);
 
-        // Å° ÀÌµ¿ ¿©ºÎ¸¦ true·Î ¼³Á¤ÇÏ¿© ´ë±â Á¾·á
+        // í‚¤ ì´ë™ ì—¬ë¶€ë¥¼ trueë¡œ ì„¤ì •í•˜ì—¬ ëŒ€ê¸° ì¢…ë£Œ
         GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
     }
 
@@ -35,13 +35,13 @@ public class Attack_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = true; // »óÀÚ ¾È¿¡ µé¾î°¨
+            isInsideBox = true; // ìƒì ì•ˆì— ë“¤ì–´ê°
         }
         else if (collision.CompareTag("Center"))
         {
-            // Å° ÀÌµ¿ ¿©ºÎ¸¦ false·Î ¼³Á¤ÇÏ¿© ´ë±â ½ÃÀÛ
+            // í‚¤ ì´ë™ ì—¬ë¶€ë¥¼ falseë¡œ ì„¤ì •í•˜ì—¬ ëŒ€ê¸° ì‹œì‘
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
-            Invoke("waiting", wait_time - minus_time); // ÁöÁ¤µÈ ´ë±â ½Ã°£ ÀÌÈÄ¿¡ waiting ÇÔ¼ö È£Ãâ
+            Invoke("waiting", wait_time - minus_time); // ì§€ì •ëœ ëŒ€ê¸° ì‹œê°„ ì´í›„ì— waiting í•¨ìˆ˜ í˜¸ì¶œ
         }
     }
 
@@ -49,11 +49,11 @@ public class Attack_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = false; // »óÀÚ¿¡¼­ ³ª¿È
+            isInsideBox = false; // ìƒìì—ì„œ ë‚˜ì˜´
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = false; // Áß¾Ó¿¡¼­ ³ª¿È
+            BoxCenter = false; // ì¤‘ì•™ì—ì„œ ë‚˜ì˜´
         }
     }
 
@@ -64,12 +64,12 @@ public class Attack_Up : MonoBehaviour
 
         if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ÀÖÀ¸¹Ç·Î ÀÌµ¿À» ¸ØÃã
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ÀÖÀ» ¶§ Ãß°¡ÀûÀÎ ÄÚµå¸¦ ³ÖÀ» ¼ö ÀÖÀ½
+            // ì˜¤ë¸Œì íŠ¸ê°€ ìƒì ì•ˆì— ìˆìœ¼ë¯€ë¡œ ì´ë™ì„ ë©ˆì¶¤
+            // ì˜¤ë¸Œì íŠ¸ê°€ ìƒì ì•ˆì— ìˆì„ ë•Œ ì¶”ê°€ì ì¸ ì½”ë“œë¥¼ ë„£ì„ ìˆ˜ ìˆìŒ
         }
         else
         {
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ¾øÀ¸¹Ç·Î ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ÀÏÁ¤ÇÑ ¼Óµµ·Î ÀÌµ¿
+            // ì˜¤ë¸Œì íŠ¸ê°€ ìƒì ì•ˆì— ì—†ìœ¼ë¯€ë¡œ ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì¼ì •í•œ ì†ë„ë¡œ ì´ë™
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
