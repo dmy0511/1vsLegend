@@ -45,8 +45,8 @@ public class spawner : MonoBehaviour
 
             Renderer renderer = spawnedObject.GetComponent<Renderer>();
 
-            Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // 랜덤한 색상 선택
-            renderer.material.color = randomColor;
+            //Color randomColor = Random.Range(0, 2) == 0 ? Color.red : Color.blue; // 랜덤한 색상 선택
+            //renderer.material.color = randomColor;
 
             // 생성된 오브젝트의 속성을 수정하거나 설정할 수 있음
 

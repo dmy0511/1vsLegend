@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 886c9ab4abe9bb04d8b80b1332cc976a
+guid: a62538bbb59e58a4cb9fca3f4604f1d3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ex_up
+      name: Attack_Btn_Up
       rect:
         serializedVersion: 2
-        x: 188
-        y: 272
-        width: 123
-        height: 126
+        x: 19
+        y: 81
+        width: 31
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b040e84399fc672468993d091d55277f
-      internalID: -646764055
+      spriteID: 10495aff24842834f80eddd008f72d52
+      internalID: 855794844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ex_left
+      name: Attack_Btn_Left
       rect:
         serializedVersion: 2
-        x: 62
-        y: 145
-        width: 124
-        height: 125
+        x: 83
+        y: 81
+        width: 31
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e248e303472e95242ae2302144f54229
-      internalID: 1636814716
+      spriteID: f623cf866bf2fae45a88ae505f5aae17
+      internalID: -1675079983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ex_down
+      name: Attack_Btn_Down
       rect:
         serializedVersion: 2
-        x: 188
-        y: 145
-        width: 123
-        height: 125
+        x: 19
+        y: 17
+        width: 31
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 404ad3178cc9c0a40bced5ed61f08afc
-      internalID: 1385748314
+      spriteID: d5a138472ce8190439291f53ea9b565a
+      internalID: 964626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ex_right
+      name: Attack_Btn_Right
       rect:
         serializedVersion: 2
-        x: 313
-        y: 145
-        width: 123
-        height: 125
+        x: 83
+        y: 17
+        width: 31
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d23968e77795fa645874f5d91e86294e
-      internalID: -1662394714
+      spriteID: 8cf9ee5d2ce478a44ab3e5110431dec5
+      internalID: 895566286
       vertices: []
       indices: 
       edges: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ex_down: 1385748314
-      ex_left: 1636814716
-      ex_right: -1662394714
-      ex_up: -646764055
+      Attack_Btn_Down: 964626
+      Attack_Btn_Left: -1675079983
+      Attack_Btn_Right: 895566286
+      Attack_Btn_Up: 855794844
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

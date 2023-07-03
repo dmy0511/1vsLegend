@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Right : MonoBehaviour
+public class Attack_Left : MonoBehaviour
 {
     private com comScript;
     private user userScript;
@@ -27,7 +27,7 @@ public class Right : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
         Destroy(gameObject);
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Box"))
@@ -68,39 +68,25 @@ public class Right : MonoBehaviour
             transform.position = newPosition;
         }
 
-        if (isInsideBox && Input.GetKeyDown(KeyCode.RightArrow))
+        if (isInsideBox && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.red)
-                {
-                    comScript.Attack(25);
-                }
+                comScript.Attack(25);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
             }
         }
-        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.red)
-                {
-                    userScript.DefenseFail(10);
-                }
-                else if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
+                userScript.DefenseFail(10);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();

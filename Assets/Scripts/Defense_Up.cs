@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Up : MonoBehaviour
+public class Defense_Up : MonoBehaviour
 {
     private com comScript;
     private user userScript;
@@ -78,12 +78,7 @@ public class Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.red)
-                {
-                    comScript.Attack(25);
-                }
+                // 애니메이션 연결
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
@@ -95,16 +90,7 @@ public class Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                Renderer renderer = GetComponent<Renderer>();
-
-                if (renderer.material.color == Color.red)
-                {
-                    userScript.DefenseFail(10);
-                }
-                else if (renderer.material.color == Color.blue)
-                {
-                    userScript.DefenseFail(10);
-                }
+                userScript.DefenseFail(10);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
