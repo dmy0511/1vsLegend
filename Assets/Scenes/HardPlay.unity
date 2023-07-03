@@ -561,6 +561,7 @@ MonoBehaviour:
   scoretext: {fileID: 1638590824}
   currentscore: 0
   showQuestionMark: 1
+  image: {fileID: 402326254}
 --- !u!1 &411287064
 GameObject:
   m_ObjectHideFlags: 0
