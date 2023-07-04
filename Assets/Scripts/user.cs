@@ -7,6 +7,7 @@ public class user : MonoBehaviour
 {
     public Slider user_hp; // 사용자의 체력을 표시하는 슬라이더
     private Animator animator; // 애니메이터
+    public Animator otherAnimator; // 애니메이터
 
     private float maxhp = 100; // 최대 체력
     private float curhp = 100; // 현재 체력
@@ -22,6 +23,7 @@ public class user : MonoBehaviour
     void Start()
     {
         user_hp.value = (float)curhp / (float)maxhp; // 현재 체력을 슬라이더에 반영
+        //Time.timeScale = 0.5f;
     }
 
     void Update()
@@ -61,6 +63,7 @@ public class user : MonoBehaviour
 
     public void DefenseFail(float amount)
     {
+        otherAnimator.SetTrigger("Attack"); // 공격 애니메이션을 재생
         curhp -= amount; // 현재 체력 감소
         curhp = Mathf.Clamp(curhp, 0, maxhp); // 현재 체력이 최대 체력을 넘지 않도록 제한
     }

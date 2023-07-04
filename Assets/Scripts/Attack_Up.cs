@@ -92,8 +92,6 @@ public class Attack_Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                userScript.DefenseFail(10);
-                
                 Destroy(gameObject);
                 timerScript.OnDestroy();
             }

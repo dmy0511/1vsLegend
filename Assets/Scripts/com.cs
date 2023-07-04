@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class com : MonoBehaviour
 {
     public Slider com_hp; // 컴퓨터의 체력을 표시하는 슬라이더
+    private Animator animator; // 애니메이터
     public Animator otherAnimator; // 애니메이터
     public Text scoretext; // 점수를 표시하는 텍스트
     public int currentscore; // 현재 점수
@@ -16,6 +17,7 @@ public class com : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>(); // 애니메이터 컴포넌트 가져오기
     }
 
     void Start()
