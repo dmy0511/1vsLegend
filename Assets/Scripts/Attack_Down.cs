@@ -12,15 +12,36 @@ public class Attack_Down : MonoBehaviour
     private bool BoxCenter = false;
 
     private float moveSpeed = 5f;
-    private float wait_time = 3f;
+    public float wait_time = 3f;
     private float minus_time = 0f;
+    public void time_down_func()
+    {
+         wait_time = 3f;
+        for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
+        {
+            if (wait_time >= 0.7f|| moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 2.5f)
+            {
+                wait_time-= 0.2f;
+                moveSpeed -= 0.2f;
+                GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime += 0.125f;
+            }
+            else
+            {
+                
+            }
+          
 
+            
+        }
+    }
     private void Start()
     {
+        time_down_func();
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
     }
+
 
     private void waiting()
     {

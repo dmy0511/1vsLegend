@@ -18,9 +18,11 @@ public class spawner : MonoBehaviour
 
     private void Start()
     {
+        currentCoolTime = 0.7f;
         coolTime = currentCoolTime;
         timer = coolTime;
     }
+
 
     private void Update()
     {
@@ -29,6 +31,13 @@ public class spawner : MonoBehaviour
             if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
             {
                 // 키 이동 여부가 false인 경우 아무 작업도 수행하지 않음
+                
+               
+
+                 
+                 
+            
+                
             }
             else
             {

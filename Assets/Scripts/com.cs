@@ -11,10 +11,13 @@ public class com : MonoBehaviour
     public Text scoretext; // 점수를 표시하는 텍스트
     public int currentscore; // 현재 점수
     public bool showQuestionMark = true; // 물음표 표시 여부
-
+ 
     private float maxhp = 100; // 최대 체력
     private float curhp = 100; // 현재 체력
 
+    public Text G_text;
+    public int G=0;
+        
     private void Awake()
     {
         animator = GetComponent<Animator>(); // 애니메이터 컴포넌트 가져오기
@@ -22,11 +25,13 @@ public class com : MonoBehaviour
 
     void Start()
     {
+        G_text.text = G.ToString();
         com_hp.value = (float)curhp / (float)maxhp; // 현재 체력을 슬라이더에 반영
 
         currentscore = 0; // 현재 점수 초기화
         UpdateScoreText(); // 점수 텍스트 업데이트
     }
+
 
     void Update()
     {
@@ -35,6 +40,10 @@ public class com : MonoBehaviour
             ResetHealth(); // 체력 초기화
             showQuestionMark = false; // 물음표 표시를 비활성화
             currentscore++; // 점수 증가
+            G += 100;
+            G_text.text = G.ToString();
+            
+   
             UpdateScoreText(); // 점수 텍스트 업데이트
         }
         else

@@ -8,15 +8,36 @@ public class Defense_Up : MonoBehaviour
     private user userScript;
     private TimerBar timerScript;
 
-    private bool isInsideBox = false; // »óÀÚ ¾È¿¡ ÀÖ´ÂÁö ¿©ºÎ
-    private bool BoxCenter = false; // »óÀÚ Áß¾Ó¿¡ ÀÖ´ÂÁö ¿©ºÎ
+    private bool isInsideBox = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool BoxCenter = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ß¾Ó¿ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    private float moveSpeed = 5f; // ÀÌµ¿ ¼Óµµ
-    private float wait_time = 3f; // ´ë±â ½Ã°£
-    private float minus_time = 0f; // ½Ã°£ °¨¼Ò
+    private float moveSpeed = 5f; // ï¿½Ìµï¿½ ï¿½Óµï¿½
+    private float wait_time = 3f; // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    private float minus_time = 0f; // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public void time_down_func()
+    {
+        wait_time = 3f;
+        for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
+        {
+            if (wait_time >= 0.7f|| moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 2.5f)
+            {
+                wait_time-= 0.2f;
+                moveSpeed -= 0.2f;
+                GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime += 0.125f;
+            }
+            else
+            {
+                
+            }
+          
 
+            
+        }
+    }
     private void Start()
     {
+        
+      time_down_func();
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
@@ -34,13 +55,13 @@ public class Defense_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = true; // »óÀÚ ¾È¿¡ µé¾î°¨
+            isInsideBox = true; // ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½î°¨
         }
         else if (collision.CompareTag("Center"))
         {
-            // Å° ÀÌµ¿ ¿©ºÎ¸¦ false·Î ¼³Á¤ÇÏ¿© ´ë±â ½ÃÀÛ
+            // Å° ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
-            Invoke("waiting", wait_time - minus_time); // ÁöÁ¤µÈ ´ë±â ½Ã°£ ÀÌÈÄ¿¡ waiting ÇÔ¼ö È£Ãâ
+            Invoke("waiting", wait_time - minus_time); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ waiting ï¿½Ô¼ï¿½ È£ï¿½ï¿½
         }
     }
 
@@ -48,11 +69,11 @@ public class Defense_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = false; // »óÀÚ¿¡¼­ ³ª¿È
+            isInsideBox = false; // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = false; // Áß¾Ó¿¡¼­ ³ª¿È
+            BoxCenter = false; // ï¿½ß¾Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 
@@ -63,12 +84,12 @@ public class Defense_Up : MonoBehaviour
 
         if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ÀÖÀ¸¹Ç·Î ÀÌµ¿À» ¸ØÃã
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ÀÖÀ» ¶§ Ãß°¡ÀûÀÎ ÄÚµå¸¦ ³ÖÀ» ¼ö ÀÖÀ½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
-            // ¿ÀºêÁ§Æ®°¡ »óÀÚ ¾È¿¡ ¾øÀ¸¹Ç·Î ¿ÞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ÀÏÁ¤ÇÑ ¼Óµµ·Î ÀÌµ¿
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
@@ -79,7 +100,7 @@ public class Defense_Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                // ¾Ö´Ï¸ÞÀÌ¼Ç ¿¬°á
+                // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
@@ -91,7 +112,12 @@ public class Defense_Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                userScript.DefenseFail(10);
+                int at = 10;
+                for (int i = 0; i <   GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i+=3)
+                {
+                    at++;
+                }
+                userScript.DefenseFail(at);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();

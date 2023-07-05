@@ -14,9 +14,30 @@ public class Attack_Up : MonoBehaviour
     private float moveSpeed = 5f; // 이동 속도
     private float wait_time = 3f; // 대기 시간
     private float minus_time = 0f; // 시간 감소
+    public void time_down_func()
+    {
+        wait_time = 3f;
+        for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
+        {
+            if (wait_time >= 0.7f|| moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 2.5f)
+            {
+                wait_time-= 0.2f;
+                moveSpeed -= 0.2f;
+                GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime += 0.125f;
+            }
+            else
+            {
+                
+            }
+          
 
+            
+        }
+    }
     private void Start()
     {
+
+        time_down_func();
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
