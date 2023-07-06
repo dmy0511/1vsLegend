@@ -56,6 +56,7 @@ public class Defense_Up : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             isInsideBox = true; // ���� �ȿ� ��
+            transform.position = new Vector3(7f, -3.25f, 0f);
         }
         else if (collision.CompareTag("Center"))
         {

@@ -55,6 +55,7 @@ public class Attack_Left : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             isInsideBox = true;
+            transform.position = new Vector3(7f, -3.25f, 0f);
         }
         else if (collision.CompareTag("Center"))
         {

@@ -57,6 +57,7 @@ public class Attack_Up : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             isInsideBox = true; // 상자 안에 들어감
+            transform.position = new Vector3(7f, -3.25f, 0f);
         }
         else if (collision.CompareTag("Center"))
         {
