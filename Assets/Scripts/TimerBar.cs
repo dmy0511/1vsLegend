@@ -7,8 +7,8 @@ public class TimerBar : MonoBehaviour
 {
     public Slider timerbar;
 
-    public float currentTime = 3f; // 남은 시간
-    public float max_time = 3f;
+    public float currentTime = 0.5f; // 남은 시간
+    public float max_time = 0.5f;
     
     private bool isTimerActive;     // 타이머가 활성화되어 있는지 여부를 확인
     private bool isInCenter; // 방향키가 Center 안에 있는지 여부를 확인
@@ -71,11 +71,11 @@ public class TimerBar : MonoBehaviour
     private void ResetTimer()
     {
         isTimerActive = false;  // 타이머가 비활성화 되면
-       max_time = 3f; // 타이머를 초기값으로 재설정
+       max_time = 0.5f; // 타이머를 초기값으로 재설정
         time_down_count++;
         for (int i = 0; i <= time_down_count; i +=5)
         {
-            if (max_time >= 0.7f)
+            if (max_time >= 0.5f)
             {
                 max_time -= 0.2f;
                 
