@@ -11,7 +11,7 @@ public class spawner : MonoBehaviour
     }
 
     public SpawnableObject[] objectsToSpawn; // 생성할 오브젝트 배열
-    public float currentCoolTime = 0.1f; // 현재 쿨타임
+    public float currentCoolTime = 0.25f; // 현재 쿨타임
 
     private float coolTime; // 쿨타임
     private float timer; // 타이머

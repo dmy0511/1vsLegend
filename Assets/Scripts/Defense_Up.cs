@@ -12,18 +12,15 @@ public class Defense_Up : MonoBehaviour
     private bool BoxCenter = false; // ���� �߾ӿ� �ִ��� ����
 
     private float moveSpeed = 20f; // �̵� �ӵ�
-    private float wait_time = 0.5f; // ��� �ð�
+    private float wait_time = 3f; // ��� �ð�
     private float minus_time = 0f; // �ð� ����
     public void time_down_func()
     {
-        wait_time = 0.5f;
         for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
         {
-            if (wait_time >= 0.5f|| moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 0.1f)
+            if (wait_time >= 3f || moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 0.25f)
             {
-                //wait_time-= 0.2f;
-                //moveSpeed -= 0.2f;
-                GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime += 0.125f;
+                wait_time-= 0.2f;
             }
             else
             {
@@ -36,8 +33,9 @@ public class Defense_Up : MonoBehaviour
     }
     private void Start()
     {
-        
-      time_down_func();
+        wait_time = 3f;
+
+        time_down_func();
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
@@ -56,7 +54,6 @@ public class Defense_Up : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             isInsideBox = true; // ���� �ȿ� ��
-            transform.position = new Vector3(6f, -3.25f, 0f);
         }
         else if (collision.CompareTag("Center"))
         {
@@ -76,6 +73,8 @@ public class Defense_Up : MonoBehaviour
         {
             BoxCenter = false; // �߾ӿ��� ����
         }
+
+        Destroy(gameObject);
     }
 
     private void Update()
