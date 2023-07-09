@@ -14,28 +14,27 @@ public class Defense_Up : MonoBehaviour
     private float moveSpeed = 20f; // �̵� �ӵ�
     private float wait_time = 3f; // ��� �ð�
     private float minus_time = 0f; // �ð� ����
-    public void time_down_func()
-    {
-        for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
-        {
-            if (wait_time >= 3f || moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 0.25f)
-            {
-                wait_time-= 0.2f;
-            }
-            else
-            {
-                
-            }
-          
 
-            
-        }
-    }
+    //public void time_down_func()
+    //{
+    //    for (int i = 0; i <= GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i += 5)
+    //    {
+    //        if (wait_time >= 1f || moveSpeed>=3.5f || GameObject.Find("Spawner").GetComponent<spawner>().currentCoolTime<= 0.25f)
+    //        {
+    //            minus_time += 0.2f;
+    //        }
+    //        else
+    //        {
+                
+    //        }
+    //    }
+    //}
+
     private void Start()
     {
         wait_time = 3f;
 
-        time_down_func();
+        //time_down_func();
         comScript = FindObjectOfType<com>();
         userScript = FindObjectOfType<user>();
         timerScript = FindObjectOfType<TimerBar>();
@@ -112,12 +111,12 @@ public class Defense_Up : MonoBehaviour
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                int at = 10;
-                for (int i = 0; i <   GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i+=3)
-                {
-                    at++;
-                }
-                userScript.DefenseFail(at);
+                //int at = 10;
+                //for (int i = 0; i <   GameObject.Find("Center").GetComponent<TimerBar>().time_down_count; i+=3)
+                //{
+                //    at++;
+                //}
+                userScript.DefenseFail(10);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
