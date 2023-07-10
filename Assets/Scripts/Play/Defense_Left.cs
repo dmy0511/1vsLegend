@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Defense_Down : MonoBehaviour
+public class Defense_Left : MonoBehaviour
 {
     private com comScript;
     private user userScript;
@@ -12,7 +12,7 @@ public class Defense_Down : MonoBehaviour
     private bool BoxCenter = false;
 
     private float moveSpeed = 20f;
-    private float wait_time = 0.5f;
+    private float wait_time = 3f;
     private float minus_time = 0f;
 
     //public void time_down_func()
@@ -67,7 +67,7 @@ public class Defense_Down : MonoBehaviour
         {
             isInsideBox = false;
         }
-        else if (collision.CompareTag("Center"))
+        else if (collision.CompareTag("Center"))    //이거 collision2D로 바꿔야 할듯?
         {
             BoxCenter = false;
         }
@@ -90,19 +90,20 @@ public class Defense_Down : MonoBehaviour
             transform.position = newPosition;
         }
 
-        if (isInsideBox && Input.GetKeyDown(KeyCode.DownArrow))
+        if (isInsideBox && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                // �ִϸ��̼� ����
+                comScript.Defense(0);
+                userScript.DefenseFail(0);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
             }
         }
-        else if (isInsideBox && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 

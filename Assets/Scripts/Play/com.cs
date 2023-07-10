@@ -69,6 +69,13 @@ public class com : MonoBehaviour
         }
     }
 
+    public void Defense(float amount)
+    {
+        otherAnimator.SetTrigger("Defense"); // 방어 애니메이션을 재생
+        curhp -= amount; // 현재 체력 감소
+        curhp = Mathf.Clamp(curhp, 0, maxhp); // 현재 체력이 최대 체력을 넘지 않도록 제한
+    }
+
     public void Attack(float amount)
     {
         otherAnimator.SetTrigger("Attack"); // 공격 애니메이션을 재생

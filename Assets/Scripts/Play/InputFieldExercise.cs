@@ -31,6 +31,6 @@ public class InputFieldExercise : MonoBehaviour
     public void OnSubmit(string str)
     {
         PlayerPrefs.SetString("Nickname", str); // 입력값을 PlayerPrefs에 저장
-        SceneManager.LoadScene("NormalPlay"); // NormalPlay Scene으로 이동
+        SceneManager.LoadScene("Start"); // Start Scene으로 이동
     }
 }

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Defense_Up : MonoBehaviour
+public class Defense_Right : MonoBehaviour
 {
     private com comScript;
     private user userScript;
     private TimerBar timerScript;
 
-    private bool isInsideBox = false; // ���� �ȿ� �ִ��� ����
-    private bool BoxCenter = false; // ���� �߾ӿ� �ִ��� ����
+    private bool isInsideBox = false;
+    private bool BoxCenter = false;
 
-    private float moveSpeed = 20f; // �̵� �ӵ�
-    private float wait_time = 3f; // ��� �ð�
-    private float minus_time = 0f; // �ð� ����
+    private float moveSpeed = 20f;
+    private float wait_time = 3f;
+    private float minus_time = 0f;
 
     //public void time_down_func()
     //{
@@ -27,6 +27,9 @@ public class Defense_Up : MonoBehaviour
     //        {
                 
     //        }
+          
+
+            
     //    }
     //}
 
@@ -52,13 +55,12 @@ public class Defense_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = true; // ���� �ȿ� ��
+            isInsideBox = true;
         }
         else if (collision.CompareTag("Center"))
         {
-            // Ű �̵� ���θ� false�� �����Ͽ� ��� ����
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = false;
-            Invoke("waiting", wait_time - minus_time); // ������ ��� �ð� ���Ŀ� waiting �Լ� ȣ��
+            Invoke("waiting", wait_time - minus_time);
         }
     }
 
@@ -66,11 +68,11 @@ public class Defense_Up : MonoBehaviour
     {
         if (collision.CompareTag("Box"))
         {
-            isInsideBox = false; // ���ڿ��� ����
+            isInsideBox = false;
         }
         else if (collision.CompareTag("Center"))
         {
-            BoxCenter = false; // �߾ӿ��� ����
+            BoxCenter = false;
         }
 
         Destroy(gameObject);
@@ -83,29 +85,28 @@ public class Defense_Up : MonoBehaviour
 
         if (GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool == false)
         {
-            // ������Ʈ�� ���� �ȿ� �����Ƿ� �̵��� ����
-            // ������Ʈ�� ���� �ȿ� ���� �� �߰����� �ڵ带 ���� �� ����
+
         }
         else
         {
-            // ������Ʈ�� ���� �ȿ� �����Ƿ� ���ʿ��� ���������� ������ �ӵ��� �̵�
             Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
 
-        if (isInsideBox && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isInsideBox && Input.GetKeyDown(KeyCode.RightArrow))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
             if (boxCollider.bounds.Contains(itemCollider.bounds.min) && boxCollider.bounds.Contains(itemCollider.bounds.max))
             {
-                // �ִϸ��̼� ����
+                comScript.Defense(0);
+                userScript.DefenseFail(0);
 
                 Destroy(gameObject);
                 timerScript.OnDestroy();
             }
         }
-        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        else if (isInsideBox && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             GameObject.Find("Canvas").GetComponent<GameManager>().key_move_bool = true;
 
