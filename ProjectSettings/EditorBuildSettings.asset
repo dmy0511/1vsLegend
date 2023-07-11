@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: de5d2a666a1ee0f45bb85a7e3e608e4b
   - enabled: 1
-    path: Assets/Scenes/Move.unity
+    path: Assets/Scenes/Moving.unity
     guid: bb9dc25ef31bea344b00508e7a8378dd
   - enabled: 1
     path: Assets/Scenes/Play.unity
